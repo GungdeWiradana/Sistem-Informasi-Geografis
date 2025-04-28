@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${import.meta.env.VITE_AUTH_URL}/login`, form);
+      const res = await axios.post(`/api/login`, form);
       const token = res.data.token;
       if (token) {
         localStorage.setItem('token', token);
