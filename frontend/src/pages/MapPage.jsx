@@ -41,7 +41,7 @@ const MapPage = () => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/api/markers`)
+    axios.get(`/api/markers`)
       .then(res => {
         const loaded = res.data.map(m => ({
           ...m,
@@ -58,7 +58,7 @@ const MapPage = () => {
     const desc = descRef.current.value.trim();
     if (name && desc && previewMarker) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/markers`, {
+        const res = await axios.post(`/api/markers`, {
           name,
           latitude: previewMarker.lat,
           longitude: previewMarker.lng,
@@ -109,7 +109,7 @@ const MapPage = () => {
         description: desc
       };
 
-      await axios.put(`${import.meta.env.VITE_API_URL}/api/markers/${selectedMarker.id}`, updatedMarker);
+      await axios.put(`/api/markers/${selectedMarker.id}`, updatedMarker);
 
       setMarkers(markers => markers.map(m =>
         m.id === selectedMarker.id
@@ -128,7 +128,7 @@ const MapPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/markers/${id}`);
+      await axios.delete(`/api/markers/${id}`);
       setMarkers(markers => markers.filter(m => m.id !== id));
       setShowForm(false);
       setPreviewMarker(null);
