@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_AUTH_URL}/register`, form);
+      await axios.post(`/api/register`, form);
       Swal.fire({
         title: 'Success!',
         text: 'Registration successful! You can now log in.',
